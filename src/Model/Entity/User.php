@@ -28,6 +28,7 @@ class User extends Entity{
         'email' => true,
         'password' => true,
         'type' => true,
+		'active' => true,
         'date' => true,
     ];
 
@@ -46,5 +47,6 @@ class User extends Entity{
         if (strlen($password) > 0) {
             return (new DefaultPasswordHasher())->hash($password);
         }
-    }	
+    }
+
 }

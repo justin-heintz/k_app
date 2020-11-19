@@ -1,0 +1,1 @@
+<?= $success ? "Account Activated" : "Account Activation Fail"  ?>

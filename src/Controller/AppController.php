@@ -29,29 +29,45 @@ class AppController extends Controller{
 		
 		$this->authUser = $this->request->getSession();
 		$this->userTypes = ['Users', 'Customers', 'Partners', 'Affiliates'];
+		
+		$this->authUser->renew();
+		
     }
 	public function beforeRender(EventInterface  $event){
 		parent::beforeRender($event);
 
-		
 		$action = $this->request->getParam('action');
 		$controller = $this->request->getParam('controller');
+		$this->set('action', $action );
+		$this->set('controller', $controller );
 		$type = 'null';
 		
 		if($this->authUser->check('type')){
 			$type = $this->userTypes[ $this->authUser->read('type') ];
+			$this->set('type', $type );
 		 }
 
 		$isAuth = [
 			'Users'=>[
-				'Users'=>['index'=>true, 'register'=>true, 'add'=>true, 'edit'=>true, 'delete'=>true, 'login'=>true]
+				'Users'=>[
+					'index'=>true, 
+					'register'=>true, 
+					'add'=>true, 
+					'edit'=>true, 
+					'delete'=>true, 
+					'login'=>true
+				]
 			],
 			'Customers'=>[],
 			'Partners'=>[],
 			'Affiliates'=>[],
 			'Admins'=>[],
 			'null'=>[
-				'Users'=>['login'=>true, 'register'=>true]
+				'Users'=>[
+					'login'=>true, 
+					'register'=>true, 
+					'activate'=>true
+				]
 			]
 		];
 		

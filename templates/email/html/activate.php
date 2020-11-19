@@ -1,0 +1,1 @@
+Click this <a href="<?= $url ?>">link</a> to activate your account. 

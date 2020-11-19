@@ -1,0 +1,31 @@
+h2{margin-bottom: 26px;}
+nav{
+	display: block;
+	margin-bottom: 10px;
+    padding: 20px 0 10px 0;
+    border-bottom: 1px solid #c2c2c2;
+}
+nav a{
+	display: inline-block;
+	color: black;
+	underline: none;
+}
+nav a:hover{}
+nav a.active{
+	font-weight: bold;
+	border-bottom: 1px solid red;
+}
+
+.sm-logos{}
+.sm-logos img{
+	width: 75px;
+	margin: 10px 5px;
+	background: white;
+}
+.sm-logos img:hover{
+	cursor: pointer;
+	border: 2px #2e2e2e dashed;
+}
+.sm-logos img.selected{
+	border: 2px #2e2e2e solid;
+}
