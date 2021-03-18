@@ -22,6 +22,7 @@ use Cake\Event\EventInterface;
 class AppController extends Controller{
 	public $authUser;
     public $userTypes;
+
 	public function initialize(): void{
         parent::initialize();
 		$this->loadComponent('RequestHandler');
@@ -29,9 +30,7 @@ class AppController extends Controller{
 		
 		$this->authUser = $this->request->getSession();
 		$this->userTypes = ['Users', 'Customers', 'Partners', 'Affiliates'];
-		
 		$this->authUser->renew();
-		
     }
 	public function beforeRender(EventInterface  $event){
 		parent::beforeRender($event);
@@ -43,12 +42,17 @@ class AppController extends Controller{
 		$type = 'null';
 		
 		if($this->authUser->check('type')){
+			//debug($type = $this->userTypes);
 			$type = $this->userTypes[ $this->authUser->read('type') ];
 			$this->set('type', $type );
 		 }
 
 		$isAuth = [
 			'Users'=>[
+				'Tasks'=>[
+					'create'=>true,
+					'view'=>true
+				],
 				'Users'=>[
 					'index'=>true, 
 					'register'=>true, 
@@ -56,21 +60,32 @@ class AppController extends Controller{
 					'edit'=>true, 
 					'delete'=>true, 
 					'login'=>true
-				]
+				],
+				'Pages'=>[
+					'display'=>true, 
+				],			
 			],
+			'Pages'=>[],
 			'Customers'=>[],
 			'Partners'=>[],
 			'Affiliates'=>[],
 			'Admins'=>[],
 			'null'=>[
+				'Pages'=>[
+					'display'=>true, 
+				],
 				'Users'=>[
 					'login'=>true, 
 					'register'=>true, 
 					'activate'=>true
-				]
+				],
 			]
 		];
-		
+		/*
+		debug($type);
+		debug($controller);
+		debug($action);
+		exit();*/
 		if(empty( $isAuth[$type][$controller][$action] )){
 			return $this->redirect(['controller'=>'Users', 'action' => 'login']);
 		}

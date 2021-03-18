@@ -1,6 +1,8 @@
 <div class="container">
 	<div class="row">
 		<div class="col">
+			<?PHP if(isset($errorMsg)){?> <div class="alert alert-danger"><?= $errorMsg ?></div><?PHP } ?>
+			<?PHP if(isset($activate) && $activate){?> <div class="alert alert-info">Your account was registered successfully. <br> Check your email to activate your account. </div> <?PHP } ?>
 			<form method="post" action="">
 				<h2>Login</h2>
 				<label>Email <br> <input type="email" name="email" value="test@test.com"></label>
@@ -10,9 +12,4 @@
 			</form>
 		</div>	
 	</div>	
-	<div class="row">
-		<div class="col">
-			<!-- <a href="<?= $this->Url->build(["controller" => "Users", "action" => "register"]); ?>">Register</a> -->
-		</div>	
-	</div>			
 </div>

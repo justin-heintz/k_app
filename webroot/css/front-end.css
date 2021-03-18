@@ -8,9 +8,9 @@ nav{
 nav a{
 	display: inline-block;
 	color: black;
-	underline: none;
+	text-decoration: none;
 }
-nav a:hover{}
+nav a:hover{text-decoration: none;}
 nav a.active{
 	font-weight: bold;
 	border-bottom: 1px solid red;

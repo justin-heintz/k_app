@@ -12,13 +12,14 @@
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
+	<?= $this->Html->script('tinymce/tinymce.min.js'); ?>
     <?= $this->fetch('script') ?>
 </head>
 <body>
 	<div class="container">
 		<nav>
 			<a class="<?= $action =="login" ? "active" : "" ?>" title="Login" href="<?= $this->Url->build(["controller" => "Users", "action" => "login"]); ?>">Login</a> |
-			<a class="<?= $action =="register" ? "active" : "" ?>" title="Register" href="<?= $this->Url->build(["controller" => "Users", "action" => "register"]); ?>">Register</a>
+			<a class="<?= $action =="register" ? "active" : "" ?>" title="Sign Up" href="<?= $this->Url->build(["controller" => "Users", "action" => "register"]); ?>">Sign Up</a>
 		</nav>
 	</div>	
     <main class="main">
